@@ -1,0 +1,19 @@
+""
+# Ignore Terraform state files (contains sensitive data)
+*.tfstate
+*.tfstate.backup
+
+# Ignore crash logs
+crash.log
+
+# Ignore Terraform cache and CLI logs
+.terraform/
+.terraform.lock.hcl
+
+# Ignore temporary files (for Mac and Linux users)
+.DS_Store
+
+# Ignore secrets or environment variables (if used)
+.env
+*.pem    # Private key files (like AWS key pairs)
+.exe
