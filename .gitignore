@@ -16,4 +16,4 @@ crash.log
 # Ignore secrets or environment variables (if used)
 .env
 *.pem    # Private key files (like AWS key pairs)
-.exe
+terraform.exe

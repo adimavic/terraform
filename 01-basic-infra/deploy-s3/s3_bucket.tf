@@ -1,14 +1,6 @@
-# resource "aws_instance" "myec2" {
-#     ami = "ami-053b12d3152c0cc71"
-#     instance_type = "t2.micro"
-# }
-
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "my-unm-bucket-12345"
+  bucket = "resumehostingamz"
 
-  website {
-    index_document = "index.html"
-  }
 
   tags = {
     Name        = "Terraform S3 Bucket"
@@ -40,15 +32,27 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
   })
 }
 
-resource "aws_s3_object" "upload_file" {
+resource "aws_s3_object" "upload_manisha" {
   bucket       = aws_s3_bucket.my_bucket.bucket
-  key          = "index.html"
-  source       = "index.html"
-  content_type = "text/html"
+  key          = "ManishaChoudharyCV.pdf"
+  source       = "ManishaChoudharyCV.pdf"
+  content_type = "application/pdf"
 }
 
-output "s3_file_url" {
-  value = "http://${aws_s3_bucket.my_bucket.bucket}.s3-website-${var.aws_region}.amazonaws.com/${aws_s3_object.upload_file.key}"
+resource "aws_s3_object" "upload_aditya" {
+  bucket       = aws_s3_bucket.my_bucket.bucket
+  key          = "AdityaKale.pdf"
+  source       = "AdityaKale.pdf"
+  content_type = "application/pdf"
+
+}
+
+output "manisha_cv_url" {
+  value = "http://${aws_s3_bucket.my_bucket.bucket}.s3-${var.aws_region}.amazonaws.com/${aws_s3_object.upload_manisha.key}"
+}
+
+output "aditya_cv_url" {
+  value = "http://${aws_s3_bucket.my_bucket.bucket}.s3-${var.aws_region}.amazonaws.com/${aws_s3_object.upload_aditya.key}"
 }
 
 variable "aws_region" {
